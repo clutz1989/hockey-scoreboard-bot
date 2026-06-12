@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  cfl-hockey-bot:
+    build: .
+    container_name: cfl-hockey-bot
+    restart: unless-stopped
+    environment:
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+    volumes:
+      - cfl_hockey_data:/app/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  cfl_hockey_data:
